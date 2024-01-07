@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+
+:root {
+  --primary: #1aac83;
+  --error: #e7195a;
+}
+
+body{
+  font-family: Courier, monospace;
+  background-color: #fff4e6;
+  margin: 0.5% 5% 0 5%; 
+}
+
+header {
+  background-color: #3c2f2f;
+  position: relative;
+}
+
+header h1{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 0 auto;
+  margin-bottom: 0;
+  width: 100%;
+  text-align: center;
+  align-items: center;
+}
+
+header h2 {
+  max-width: 100%;
+  margin-top: 0;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10%;
+  background-color: #3c2f2f;
+  color: #ffffff;
+}
+
+header a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+header hr{
+  margin: 0 auto;
+  border: 1 solid #fff4e6;
+  max-width: 81%;
+}
+
+header img {
+  width:50px;
+  height:45px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.pages {
+  width: 80%;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+
+
