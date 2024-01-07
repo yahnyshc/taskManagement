@@ -1,8 +1,11 @@
 require('dotenv').config();
+
 const express = require('express');
+const mongoose = require('mongoose');
 const draftsRouter = require('./routes/drafts');
 
 const PORT = process.env.PORT;
+const MONGO_URI = process.env.MONGO_URI;
 
 app = express();
 
@@ -17,9 +20,18 @@ app.use((req,res,next) => {
 // routes
 app.use('/api/drafts', draftsRouter)
 
-app.listen(PORT, () => {
-    console.log('listening on localhost:'+PORT);
-});
+mongoose.connect(MONGO_URI)
+    .then(() => {
+        // listen for request after connection 
+        app.listen(PORT, () => {
+            console.log('listening on localhost:'+PORT);
+        });
+    })
+    .catch((err)=>{
+        console.log(err)
+    });
+
+
 
 
 
