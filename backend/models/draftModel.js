@@ -13,7 +13,7 @@ const draftSchema = new Schema({
     },
     content: {
         type: String,
-        required: true
+        required: false
     }
 }, { timestamps: true });
 

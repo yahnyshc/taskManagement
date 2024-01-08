@@ -81,6 +81,16 @@ header img {
   position: relative;
 }
 
+.add-draft {
+  margin: 5px;
+  padding: 10px;
+  background-color: #3c2f2f;
+  color:#ffffff;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  border-radius: 10px;
+  position: relative;
+}
+
 .draft-details h4 {
   position: relative;
   margin: 0px;
@@ -100,12 +110,43 @@ header img {
   margin: 0px;
 }
 
+.draft-details hr{
+  margin: 1 0 1 0 ;
+  border: 1 solid #fff4e6;
+  max-width: 99%;
+}
+
+.draft-details:hover{
+  transform: translate(1%, 0);
+}
+
+.draft-details:hover hr{
+  border-color: #ffe600;
+}
+
+.draft-details#selected {
+  border-color: #ff0000;
+  transform: translate(1%, 0);
+}
+
+.draft-details#selected h4{
+  overflow: visible; 
+  white-space: normal;
+  height:auto;
+}
+
+.draft-details#selected hr {
+  border-color: #ff0000;
+}
+
 .draft-content textarea{
+  margin: 5px 0 0 10px;
   max-width: 100%;
-  width: 100%;
-  height: 100%;
+  width: 96%;
+  height: 572px;
   border-radius: 10px;
   padding: 10px;
+  font-size: 18px;
 }
 
 .draft-details .timestamp {
@@ -114,5 +155,36 @@ header img {
   top: 10px;
   font-size: 11px;
 }
+
+button.showForm {
+  color: #ffffff;
+  border-radius: 1px;
+  border-color: #ffffff;
+  border-width: 1px;
+}
+
+button.add {
+  background-color: #3c2f2f;
+  color: #ffffff;
+  position: absolute;
+  right: 9px;
+  border-radius: 50%;
+  border-color: #ffffff;
+  height: 25px;
+  width: 25px;
+  margin-top:-0.1em;
+}
+
+button.add:hover {
+  background-color: #ffffff;
+  color: #3c2f2f;
+  border-color: #3c2f2f;
+}
+
+input {
+  padding: 1px;
+  border-radius: 5px;
+}
+
 
 

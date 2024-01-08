@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 // get all drafts
 const getDrafts = async (req, res) => {
-    const drafts = await Drafts.find( {} ).sort({ createdAt: -1 });
+    const drafts = await Drafts.find( {} ).sort({ updatedAt: -1 });
 
     // send drafts
     res.status(200).json(drafts);
