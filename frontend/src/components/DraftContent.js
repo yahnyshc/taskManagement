@@ -36,11 +36,9 @@ const DraftContent = ({draft}) => {
         }
 
         if (! firstRender ){
-            console.log("second")
             handleChange();
         }
         else{
-            console.log("first")
             ref.current = false;
         }
     }, [body, dispatch, draft._id]);

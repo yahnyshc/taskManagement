@@ -128,7 +128,7 @@ header img {
 
 .draft-details#selected {
   border-color: #ff0000;
-  transform: translate(1%, 0);
+  /* transform: translate(1%, 0); */
 }
 
 .draft-details#selected h4{
