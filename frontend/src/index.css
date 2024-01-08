@@ -56,10 +56,63 @@ header img {
 }
 
 .pages {
-  width: 80%;
+  width: 90%;
   padding: 20px;
   margin: 0 auto;
 }
 
+.home {
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+
+.drafts {
+  margin: 0px;
+  padding: 0px 5px 5px 5px;
+}
+
+.draft-details {
+  margin: 5px;
+  padding: 10px;
+  background-color: #3c2f2f;
+  color:#ffffff;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.draft-details h4 {
+  position: relative;
+  margin: 0px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 75%;
+}
+
+.draft-details:hover h4{
+  overflow: visible; 
+  white-space: normal;
+  height:auto;
+}
+
+.draft-details p {
+  margin: 0px;
+}
+
+.draft-content textarea{
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.draft-details .timestamp {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 11px;
+}
 
 
