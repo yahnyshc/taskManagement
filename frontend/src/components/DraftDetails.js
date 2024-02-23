@@ -1,9 +1,13 @@
 import { useDraftsContext } from '../hooks/useDraftsContext';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+import { useState } from 'react';
 
 
 const DraftDetails = ({draft, selected, onClick}) => {
     const { dispatch } = useDraftsContext();
+    const [ title, setTitle ] = useState(draft.title);
+    const [ editingTitle, setEditingTitle ] = useState(false);
+    const [ error, setError ] = useState(null);
 
     var date = formatDistanceToNow( new Date(draft.updatedAt), { addSuffix: true } )
     // var date = new Date(draft.updatedAt)
@@ -22,10 +26,72 @@ const DraftDetails = ({draft, selected, onClick}) => {
         }
     }
 
+    const handleEdit = (e) => {
+        setEditingTitle(true);
+    }
+
+    const handleEditTitleConfim = async (e) => {
+        console.log("editing");
+        e.stopPropagation();
+
+        const response = await fetch('/api/drafts/'+draft._id ,{
+            method: 'PATCH',
+            body: JSON.stringify({title: title}),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        const json = await response.json();
+
+        if (!response.ok){
+            setError(json.error)
+        }
+        if (response.ok){
+            setError(null)
+            json.title = title;
+            console.log('content updated added', json)
+            setEditingTitle(false);
+            dispatch({type: 'UPDATE_DRAFT', payload: json})
+        }
+    }
+
     return (
         <div className="draft-details" id={(selected && selected._id===draft._id && "selected") || ""} onClick={onClick}>
-            <h4 title={draft.title}>{draft.title}</h4>
-            <hr></hr>
+            {!editingTitle && 
+                <div>
+                    <h4 title={title}>{title}</h4>
+                    <div className='vertical-line'>
+                        <div className='edit' onClick={(e) => handleEdit(e)}>
+                            <img src="edit-icon.png" alt="edit"></img>
+                        </div>
+                        <hr></hr>
+                    </div>
+                </div>
+            }
+            
+            {editingTitle && <div>
+                <form onSubmit={handleEditTitleConfim}>
+                    <input 
+                        type='text' 
+                        value={title}
+                        style={{width:'44%', 'marginBottom': '5px'}}
+                        onChange={(e) => setTitle(e.target.value)}
+                        required
+                        />
+                        <div className='vertical-line'>
+                            <button className='edit'>
+                                <img src="confirm.png" alt="confirm"></img>
+                            </button>
+                            <hr></hr>
+                        </div>
+                        
+                </form>
+                
+            </div>
+            }
+            
+            {error && <div className='error'>{error}</div>}
+            
             <p><strong>issue: </strong>{(draft.issue && draft.issue) || "None"}</p>
             <p className="timestamp">{date}</p>
             <div className="delete" onClick={(e) => handleDelete(e)}><img src="trash-can.png" alt="delete"></img></div>

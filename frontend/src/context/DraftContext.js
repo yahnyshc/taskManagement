@@ -27,7 +27,8 @@ export const draftsReducer = (state, action) => {
             }
         case 'DELETE_DRAFT':
             return {
-                drafts: state.drafts.filter((draft) => draft._id !== action.payload._id)
+                drafts: state.drafts.filter((draft) => draft._id !== action.payload._id),
+                selected: state.selected
             }
         default:
             return state

@@ -3,6 +3,7 @@ require('dotenv').config({path:'../config/.env'});
 const express = require('express');
 const mongoose = require('mongoose');
 const draftsRouter = require('./routes/drafts');
+const userRouter = require('./routes/user')
 
 const PORT = process.env.PORT;
 const MONGO_URI = process.env.MONGO_URI;
@@ -19,6 +20,7 @@ app.use((req,res,next) => {
 
 // routes
 app.use('/api/drafts', draftsRouter)
+app.use('/api/user', userRouter)
 
 mongoose.connect(MONGO_URI)
     .then(() => {

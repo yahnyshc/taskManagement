@@ -45,7 +45,7 @@ const DraftContent = ({draft}) => {
 
     return (
         <div className="draft-content">
-            <textarea value={body} onChange={(e) => {
+            <textarea value={body} spellcheck="true" onChange={(e) => {
                 setBody(e.target.value)
                 console.log("changed")}} />
             {error && <div className='error'>{error}</div>}
