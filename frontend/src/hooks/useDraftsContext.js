@@ -8,5 +8,5 @@ export const useDraftsContext = () => {
         throw Error('useDraftsContext must be used inside DraftsContextProvider')
     }
 
-    return context;
+    return context
 }

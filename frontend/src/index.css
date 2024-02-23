@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
 
 :root {
-  --primary: #1aac83;
+  --primary: #fff4e6;
   --error: #e7195a;
 }
 
@@ -222,10 +222,94 @@ button.edit {
   background: none;
 }
 
-input {
+.create input {
   padding: 1px;
   border-radius: 5px;
 }
 
+  
+.auth-wrap {
+  position: relative;
+  margin: 0 auto;
+  background: #3c2f2f;
+  width: 350px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 10px #333;
+  padding: 15px;
+  
+  h2 {
+    text-align: center;
+    font-weight: 200;
+    font-size: 2em;
+    margin-top: 10px;
+    color: #ffffff;
+  }
+  
+  .form {
+    input[type="text"],
+    input[type="password"],
+    button {
+      width: 80%;
+      margin-left: 10%;
+      margin-bottom: 25px;
+      height: 40px;
+      border-radius: 5px;
+      outline: 0;
+      -moz-outline-style: none;
+      outline-style: none;
+    }
+    
+    input[type="text"],
+    input[type="password"] {
+      border: 1px solid #bbb;
+      padding: 0 0 0 10px;
+      font-size: 14px;
+      &:focus {
+        border: 1px solid #3498db;
+      }
+    }
+    
+    a {
+      text-align: center;
+      font-size: 12px;
+      color: #3498db;
+      
+      p{
+        margin-top: 0;
+        padding-bottom: 5px;
+      }
+      
+    }
+    
+    button {
+      background: rgba(255, 0, 0, 0.849);
+      border:none;
+      color: white;
+      font-size: 16px;
+      font-weight: 200;
+      cursor: pointer;
+      transition: box-shadow .1s ease;
+      
+      &:hover {
+        box-shadow: 1px 1px 5px #555;  
+      }
+        
+      &:active {
+          box-shadow: 1px 1px 7px #222;  
+      }
+      
+    }
+  }
+}
 
+nav {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 20px;
+  text-align: right;
+  width: 90%;
+}
 
+nav a{
+  margin-left: 2%;
+}
