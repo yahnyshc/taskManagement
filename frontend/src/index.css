@@ -2,7 +2,7 @@
 
 :root {
   --primary: #fff4e6;
-  --error: #e7195a;
+  --error: rgba(255, 0, 0, 0.849);
 }
 
 body{
@@ -263,6 +263,7 @@ button.edit {
     input[type="password"] {
       border: 1px solid #bbb;
       padding: 0 0 0 10px;
+      box-sizing: border-box;
       font-size: 14px;
       &:focus {
         border: 1px solid #3498db;
@@ -297,7 +298,16 @@ button.edit {
       &:active {
           box-shadow: 1px 1px 7px #222;  
       }
-      
+    }
+    div.error {
+      box-sizing: border-box;
+      margin-left: 10%;
+      padding: 10px;
+      background: #fff4e6;
+      border: 1px solid var(--error);
+      color: var(--error);
+      border-radius: 4px;
+      width: 80%;
     }
   }
 }
@@ -313,3 +323,4 @@ nav {
 nav a{
   margin-left: 2%;
 }
+  
