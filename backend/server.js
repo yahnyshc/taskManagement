@@ -18,7 +18,7 @@ app.use((req,res,next) => {
     next();
 })
 
-app.use("/", (req, res)=>{
+app.use("/", (req, res, next)=>{
     res.send("Server is running.")
     next()
 })
