@@ -49,7 +49,7 @@ const DraftForm = () => {
                 <input 
                     type='text' 
                     value={title}
-                    style={{width:'50%'}}
+                    style={{width:'50%', padding: '2px'}}
                     onChange={(e) => setTitle(e.target.value)}
                     required
                     />
@@ -59,7 +59,7 @@ const DraftForm = () => {
                     value={issue}
                     minLength="4" 
                     maxLength="4"
-                    style={{width:'10%'}}
+                    style={{width:'10%', padding: '2px'}}
                     onChange={(e) => setIssue(e.target.value)}
                     />
                 <button className='add'>+</button>
