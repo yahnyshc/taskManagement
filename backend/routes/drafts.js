@@ -1,8 +1,11 @@
 const express = require('express');
 
 const  { getDrafts, getDraft, createDraft, deleteDraft, updateDraft } = require('../controllers/draftController');
+const {requireAuth} = require('../middleware/requireAuth')
 
 const router = express.Router();
+
+router.use(requireAuth)
 
 // GET all drafts
 router.get('/', getDrafts);

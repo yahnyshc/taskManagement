@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useDraftsContext } from '../hooks/useDraftsContext';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const DraftForm = () => {
     const { dispatch } = useDraftsContext();
+    const { user } = useAuthContext()
 
     const [title, setTitle] = useState('');
     const [issue, setIssue] = useState('');
@@ -11,13 +13,19 @@ const DraftForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (!user){
+            setError("You must be logged in")
+            return
+        }
+
         const draft = {title, issue, content:""};
 
         const response = await fetch('/api/drafts/',{
             method: 'POST',
             body: JSON.stringify(draft),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
             }
         })
         const json = await response.json();
@@ -29,19 +37,19 @@ const DraftForm = () => {
             setTitle('');
             setIssue('');
             setError(null)
-            console.log('new draft added', json)
             dispatch({type: 'CREATE_DRAFT', payload: json})
         }
     } 
 
     return (
         <div className="add-draft">
+            <span>Add new draft:</span>
             <form className='create' onSubmit={handleSubmit}>
                 <label>Title: </label>
                 <input 
                     type='text' 
                     value={title}
-                    style={{width:'44%'}}
+                    style={{width:'50%'}}
                     onChange={(e) => setTitle(e.target.value)}
                     required
                     />
@@ -51,7 +59,7 @@ const DraftForm = () => {
                     value={issue}
                     minLength="4" 
                     maxLength="4"
-                    style={{width:'8%'}}
+                    style={{width:'10%'}}
                     onChange={(e) => setIssue(e.target.value)}
                     />
                 <button className='add'>+</button>

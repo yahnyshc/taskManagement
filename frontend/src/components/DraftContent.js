@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { useDraftsContext } from '../hooks/useDraftsContext';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const DraftContent = ({draft}) => {
     const ref = useRef(true);
@@ -9,17 +10,22 @@ const DraftContent = ({draft}) => {
     const [body, setBody] = useState(draft.content);
     const [error, setError] = useState(null);
 
+    const { user } = useAuthContext()
+
     useEffect(() => {
         const firstRender = ref.current;
         
         const handleChange = async () => {
-            console.log(body);
+            if (!user){
+                return
+            }
 
             const response = await fetch('/api/drafts/'+draft._id ,{
                 method: 'PATCH',
                 body: JSON.stringify({content: body}),
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${user.token}`
                 }
             })
             const json = await response.json()
@@ -30,7 +36,6 @@ const DraftContent = ({draft}) => {
             if (response.ok){
                 setError(null)
                 json.content = body;
-                console.log('content updated added', json)
                 dispatch({type: 'UPDATE_DRAFT', payload: json})
             }
         }
@@ -41,13 +46,12 @@ const DraftContent = ({draft}) => {
         else{
             ref.current = false;
         }
-    }, [body, dispatch, draft._id]);
+    }, [body, dispatch, user, draft._id]);
 
     return (
         <div className="draft-content">
-            <textarea value={body} spellcheck="true" onChange={(e) => {
-                setBody(e.target.value)
-                console.log("changed")}} />
+            <textarea value={body} spellCheck="true" onChange={(e) => {
+                setBody(e.target.value)}} />
             {error && <div className='error'>{error}</div>}
         </div>
     )

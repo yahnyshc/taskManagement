@@ -4,22 +4,30 @@ import { useDraftsContext } from '../hooks/useDraftsContext';
 import DraftDetails from '../components/DraftDetails';
 import DraftContent from '../components/DraftContent';
 import DraftForm from '../components/DraftForm';
+import { useAuthContext } from '../hooks/useAuthContext'
 
 const Home = () => {
     const { drafts, selected, dispatch } = useDraftsContext();
+    const {user} = useAuthContext()
 
     useEffect(() => {
         const fetchDrafts = async () => {
-            const response = await fetch('/api/drafts');
+            const response = await fetch('/api/drafts', {
+                headers: {
+                    'Authorization': `Bearer ${user.token}`
+                }
+            });
             const json = await response.json();
 
             if (response.ok){
                 dispatch({type: 'SET_DRAFTS', payload: json})
             }
         }
-        
-        fetchDrafts()
-    }, [dispatch]);
+
+        if (user){
+            fetchDrafts()
+        }
+    }, [dispatch, user]);
 
     useEffect(() => {
         if (drafts){

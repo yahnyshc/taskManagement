@@ -6,7 +6,7 @@
 }
 
 body{
-  font-family: Courier, monospace;
+  font-family: Comic Sans MS, Comic Sans, cursive;
   background-color: #fff4e6;
   margin: 0; 
 }
@@ -88,6 +88,14 @@ header img {
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
   border-radius: 10px;
   position: relative;
+}
+
+.add-draft span{
+  font-weight: bold;
+}
+
+.add-draft form{
+  margin-top: 10px;
 }
 
 .draft-details h4 {
@@ -211,9 +219,7 @@ button.add {
 }
 
 button.add:hover {
-  background-color: #ffffff;
-  color: #3c2f2f;
-  border-color: #3c2f2f;
+  background-color: rgba(255, 0, 0, 0.849);
 }
 
 button.edit {
@@ -231,6 +237,7 @@ button.edit {
 .auth-wrap {
   position: relative;
   margin: 0 auto;
+  margin-top: 30px;
   background: #3c2f2f;
   width: 350px;
   border-radius: 5px;
@@ -302,6 +309,7 @@ button.edit {
     div.error {
       box-sizing: border-box;
       margin-left: 10%;
+      margin-bottom: 5%;
       padding: 10px;
       background: #fff4e6;
       border: 1px solid var(--error);
@@ -324,3 +332,60 @@ nav a{
   margin-left: 2%;
 }
   
+.button-3 {
+  appearance: none;
+  background-color: var(--background);
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 3px 12px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.button-3:focus:not(:focus-visible):not(.focus-visible) {
+  box-shadow: none;
+  outline: none;
+}
+
+.button-3:hover {
+  background-color: rgba(255, 0, 0, 0.849);
+}
+
+.button-3:focus {
+  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+  outline: none;
+}
+
+.button-3:disabled {
+  background-color: rgba(255, 0, 0, 0.849);
+  border-color: rgba(27, 31, 35, .1);
+  color: rgba(255, 255, 255, .8);
+  cursor: default;
+}
+
+.button-3:active {
+  background-color: rgba(255, 0, 0, 0.849);
+  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+}
+
+span.email{
+  margin-right: 10px;
+  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-size: 14px;
+  color: #ffffff;
+}

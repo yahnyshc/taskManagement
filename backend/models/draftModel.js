@@ -14,6 +14,10 @@ const draftSchema = new Schema({
     content: {
         type: String,
         required: false
+    },
+    user_id: {
+        type: String,
+        required: true
     }
 }, { timestamps: true });
 

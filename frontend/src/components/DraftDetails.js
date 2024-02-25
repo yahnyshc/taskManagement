@@ -1,13 +1,14 @@
 import { useDraftsContext } from '../hooks/useDraftsContext';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { useState } from 'react';
-
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const DraftDetails = ({draft, selected, onClick}) => {
     const { dispatch } = useDraftsContext();
     const [ title, setTitle ] = useState(draft.title);
     const [ editingTitle, setEditingTitle ] = useState(false);
     const [ error, setError ] = useState(null);
+    const { user } = useAuthContext()
 
     var date = formatDistanceToNow( new Date(draft.updatedAt), { addSuffix: true } )
     // var date = new Date(draft.updatedAt)
@@ -16,8 +17,15 @@ const DraftDetails = ({draft, selected, onClick}) => {
     const handleDelete = async (e) => {
         e.stopPropagation();
 
+        if (!user){
+            return
+        }
+
         const response = await fetch('/api/drafts/'+draft._id, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${user.token}`
+            }
         });
         const json = await response.json()
 
@@ -31,7 +39,6 @@ const DraftDetails = ({draft, selected, onClick}) => {
     }
 
     const handleEditTitleConfim = async (e) => {
-        console.log("editing");
         e.stopPropagation();
 
         const response = await fetch('/api/drafts/'+draft._id ,{
@@ -49,7 +56,6 @@ const DraftDetails = ({draft, selected, onClick}) => {
         if (response.ok){
             setError(null)
             json.title = title;
-            console.log('content updated added', json)
             setEditingTitle(false);
             dispatch({type: 'UPDATE_DRAFT', payload: json})
         }
