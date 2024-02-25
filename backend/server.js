@@ -18,6 +18,11 @@ app.use((req,res,next) => {
     next();
 })
 
+app.use("/", (req, res)=>{
+    res.send("Server is running.")
+    next()
+})
+
 // routes
 app.use('/api/drafts', draftsRouter)
 app.use('/api/user', userRouter)
