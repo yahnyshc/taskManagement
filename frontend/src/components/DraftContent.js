@@ -3,8 +3,6 @@ import { useDraftsContext } from '../hooks/useDraftsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 
 const DraftContent = ({draft}) => {
-    const ref = useRef(true);
-
     const { dispatch } = useDraftsContext();
 
     const [body, setBody] = useState(draft.content);
@@ -13,8 +11,6 @@ const DraftContent = ({draft}) => {
     const { user } = useAuthContext()
 
     useEffect(() => {
-        const firstRender = ref.current;
-        
         const handleChange = async () => {
             if (!user){
                 return
@@ -40,12 +36,8 @@ const DraftContent = ({draft}) => {
             }
         }
 
-        if (! firstRender ){
-            handleChange();
-        }
-        else{
-            ref.current = false;
-        }
+        handleChange();
+
     }, [body, dispatch, user, draft._id]);
 
     return (
