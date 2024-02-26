@@ -2,11 +2,6 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/userModel')
 
 const addHeadersToRes = async (res) => {
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_URL);
-
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
     return res
 }
