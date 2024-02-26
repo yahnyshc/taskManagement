@@ -1,6 +1,16 @@
 const User = require("../models/userModel")
 const jwt = require('jsonwebtoken')
 
+const addHeadersToRes = async (res) => {
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_URL);
+
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+    return res
+}
+
 const createToken = (_id) => {
     return jwt.sign({_id}, process.env.SECRET, { expiresIn: '3d' }) 
 }
@@ -15,9 +25,9 @@ const loginUser = async (req, res) => {
         // create token
         const token = createToken(user._id)
 
-        res.status(200).json({email, token})
+        addHeadersToRes(res).status(200).json({email, token})
     } catch (error) {
-        res.status(400).json({error: error.message})
+        addHeadersToRes(res).status(400).json({error: error.message})
     }
 }
 
@@ -31,9 +41,9 @@ const signupUser = async (req, res) => {
         // create token
         const token = createToken(user._id)
 
-        res.status(200).json({email, token})
+        addHeadersToRes(res).status(200).json({email, token})
     } catch (error) {
-        res.status(400).json({error: error.message})
+        addHeadersToRes(res).status(400).json({error: error.message})
     }
 }
 
