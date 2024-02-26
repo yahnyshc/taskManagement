@@ -12,7 +12,7 @@ const MONGO_URI = process.env.MONGO_URI;
 app = express();
 
 app.use(express.json())
-app.use(cors());
+//app.use(cors());
 
 // middleware 
 app.use((req,res,next) => {
@@ -28,7 +28,7 @@ mongoose.connect(MONGO_URI)
     .then(() => {
         // listen for request after connection 
         app.listen(PORT, () => {
-            console.log('listening on localhost:'+PORT);
+            console.log('listening on https://localhost:'+PORT);
         });
     })
     .catch((err)=>{

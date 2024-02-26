@@ -13,17 +13,18 @@ const Home = () => {
     const {user} = useAuthContext()
 
     useEffect(() => {
-        console.log(process.env.REACT_APP_BACKEND_URL)
         const fetchDrafts = async () => {
-            const response = await fetch(process.env.REACT_APP_BACKEND_URL+'/api/drafts', {
+            const response = await fetch((process.env.DEVELOPMENT ? "" : process.env.REACT_APP_BACKEND_URL)+'/api/drafts', {
                 headers: {
                     'Authorization': `Bearer ${user.token}`
                 }
             });
             const json = await response.json();
 
+
             if (response.ok){
                 dispatch({type: 'SET_DRAFTS', payload: json})
+                dispatch({type: 'SET_SELECTED', payload: json[0]})
             }
         }
 
@@ -31,12 +32,6 @@ const Home = () => {
             fetchDrafts()
         }
     }, [dispatch, user]);
-
-    useEffect(() => {
-        if (drafts){
-            dispatch({type: 'SET_SELECTED', payload: drafts[0]})
-        }
-    }, [drafts, dispatch]);
 
     return (
         <div className="home">

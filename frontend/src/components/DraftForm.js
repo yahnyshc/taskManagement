@@ -20,7 +20,7 @@ const DraftForm = () => {
 
         const draft = {title, issue, content:""};
 
-        const response = await fetch(process.env.REACT_APP_BACKEND_URL+'/api/drafts/',{
+        const response = await fetch((process.env.DEVELOPMENT ? "" : process.env.REACT_APP_BACKEND_URL)+'/api/drafts/',{
             method: 'POST',
             body: JSON.stringify(draft),
             headers: {

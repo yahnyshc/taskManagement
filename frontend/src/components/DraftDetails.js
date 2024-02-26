@@ -11,8 +11,6 @@ const DraftDetails = ({draft, selected, onClick}) => {
     const { user } = useAuthContext()
 
     var date = formatDistanceToNow( new Date(draft.updatedAt), { addSuffix: true } )
-    // var date = new Date(draft.updatedAt)
-    // date = date.getDate() +  " " + date.toLocaleString('default', { month: 'long' }) + " " + date.getFullYear();
 
     const handleDelete = async (e) => {
         e.stopPropagation();
@@ -21,7 +19,7 @@ const DraftDetails = ({draft, selected, onClick}) => {
             return
         }
 
-        const response = await fetch(process.env.REACT_APP_BACKEND_URL+'/api/drafts/'+draft._id, {
+        const response = await fetch((process.env.DEVELOPMENT ? "" : process.env.REACT_APP_BACKEND_URL)+'/api/drafts/'+draft._id, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${user.token}`
@@ -41,7 +39,7 @@ const DraftDetails = ({draft, selected, onClick}) => {
     const handleEditTitleConfim = async (e) => {
         e.stopPropagation();
 
-        const response = await fetch(process.env.REACT_APP_BACKEND_URL+'/api/drafts/'+draft._id ,{
+        const response = await fetch((process.env.DEVELOPMENT ? "" : process.env.REACT_APP_BACKEND_URL)+'/api/drafts/'+draft._id ,{
             method: 'PATCH',
             body: JSON.stringify({title: title}),
             headers: {
