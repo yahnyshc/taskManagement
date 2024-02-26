@@ -20,7 +20,7 @@ const DraftContent = ({draft}) => {
                 return
             }
 
-            const response = await fetch('/api/drafts/'+draft._id ,{
+            const response = await fetch(process.env.REACT_APP_BACKEND_URL+'/api/drafts/'+draft._id ,{
                 method: 'PATCH',
                 body: JSON.stringify({content: body}),
                 headers: {

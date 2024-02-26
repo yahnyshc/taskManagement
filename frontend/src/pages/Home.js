@@ -1,3 +1,5 @@
+// require('dotenv').config({path:'../config/.env'});
+
 import { useEffect } from 'react';
 import { useDraftsContext } from '../hooks/useDraftsContext';
 
@@ -11,8 +13,9 @@ const Home = () => {
     const {user} = useAuthContext()
 
     useEffect(() => {
+        console.log(process.env.REACT_APP_BACKEND_URL)
         const fetchDrafts = async () => {
-            const response = await fetch('/api/drafts', {
+            const response = await fetch(process.env.REACT_APP_BACKEND_URL+'/api/drafts', {
                 headers: {
                     'Authorization': `Bearer ${user.token}`
                 }
