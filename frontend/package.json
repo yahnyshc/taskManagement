@@ -1,5 +1,5 @@
 {
-  "proxy": "https://task-management-backend-sepia.vercel.app/",
+  "proxy": "https://task-management-backend-one.vercel.app/",
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
