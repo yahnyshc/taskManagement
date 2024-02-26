@@ -20,9 +20,9 @@ const loginUser = async (req, res) => {
         // create token
         const token = createToken(user._id)
 
-        addHeadersToRes(res).status(200).json({email, token})
+        res.status(200).json({email, token})
     } catch (error) {
-        addHeadersToRes(res).status(400).json({error: error.message})
+        res.status(400).json({error: error.message})
     }
 }
 
@@ -36,9 +36,9 @@ const signupUser = async (req, res) => {
         // create token
         const token = createToken(user._id)
 
-        addHeadersToRes(res).status(200).json({email, token})
+        res.status(200).json({email, token})
     } catch (error) {
-        addHeadersToRes(res).status(400).json({error: error.message})
+        res.status(400).json({error: error.message})
     }
 }
 
