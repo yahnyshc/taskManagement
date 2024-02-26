@@ -12,6 +12,7 @@ export const useLogout = () => {
         // dispatch logout action
         dispatch({type: 'LOGOUT'})
         draftsDispatch({type: 'SET_DRAFTS', payload: null})
+        draftsDispatch({type: 'SET_SELECTED', payload: null})
     }
 
     return {logout}
