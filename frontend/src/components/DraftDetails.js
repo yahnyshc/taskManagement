@@ -39,11 +39,16 @@ const DraftDetails = ({draft, selected, onClick}) => {
     const handleEditTitleConfim = async (e) => {
         e.stopPropagation();
 
+        if (!user){
+            return
+        }
+
         const response = await fetch((process.env.DEVELOPMENT ? "" : process.env.REACT_APP_BACKEND_URL)+'/api/drafts/'+draft._id ,{
             method: 'PATCH',
             body: JSON.stringify({title: title}),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
             }
         })
         const json = await response.json();
