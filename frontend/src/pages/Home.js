@@ -38,10 +38,10 @@ const Home = () => {
             <div className="drafts">
                 <DraftForm />
                 {drafts && drafts.map((draft) => (
-                    <DraftDetails key={draft._id} draft={draft} selected={selected} onClick={() => dispatch({type: 'SET_SELECTED', payload: draft})}/>
+                    <DraftDetails key={draft._id} draft={draft} selected={selected} onClick={() => dispatch({ type: 'SET_SELECTED', payload: draft })} />
                 ))}
             </div>
-            { selected && <DraftContent key={selected._id} draft={selected}></DraftContent>}
+            {selected && <DraftContent key={selected._id} draft={selected}></DraftContent>}
         </div>
     )
 }
